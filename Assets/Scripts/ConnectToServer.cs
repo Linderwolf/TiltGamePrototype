@@ -1,5 +1,10 @@
 /// ConnectToServer.cs
 /// Handles connections to the Photon Multiplayer Server
+/// 
+/// Author: Peter Wolfgang Linder
+/// Date: April 5th, 2022
+///
+/// @see Photon Docs
 /// @see Blackthornprod's Unity & Photon Tutorial: https://www.youtube.com/watch?v=93SkbMpWCGo&t=203s
 
 using System.Collections;
@@ -22,14 +27,14 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinLobby();
     }
 
+    // Loads the Lobby scene after joining a lobby
     public override void OnJoinedLobby()
     {
-        // Note: You don't yet have a Lobby scene
-        // Loads the Lobby scene after joining a lobby
-        // 
-        SceneManager.LoadScene("MainMenuScene");
-        GameObject.Find("MainMenu").SetActive(false);
-        GameObject.Find("OptionsMenu").SetActive(false);
-        GameObject.Find("MultiplayerMenu").SetActive(true);
+        SceneManager.LoadScene("MultiplayerMenuScene");
+    }
+
+    // To-Do?
+    public override void OnLeftLobby()
+    {
     }
 }

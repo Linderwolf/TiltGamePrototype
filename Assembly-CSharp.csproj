@@ -52,15 +52,8 @@
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>2020.3.12f1</UnityVersion>
   </PropertyGroup>
-  <PropertyGroup>
-    <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
-  </PropertyGroup>
   <ItemGroup>
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
-    <Analyzer Include="Assets\Photon\PhotonLibs\Metro\Photon3Unity3D.dll" />
-    <Analyzer Include="Assets\Photon\PhotonLibs\Photon3Unity3D.dll" />
-    <Analyzer Include="Assets\Photon\PhotonLibs\WebSocket\websocket-sharp.dll" />
-    <Analyzer Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
@@ -72,30 +65,35 @@
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatAppIdCheckerUI.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\AppSettingsExtensions.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\NamePickGui.cs" />
-    <Compile Include="Assets\Scripts\FoodSpawn.cs" />
+    <Compile Include="Assets\EasyLoadingScreen\Scripts\LoadingScreenBarSystem.cs" />
+    <Compile Include="Assets\Scripts\SpawnFood.cs" />
     <Compile Include="Assets\Scripts\Archive\CameraFollow.cs" />
-    <Compile Include="Assets\Scripts\Archive\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChannelSelector.cs" />
+    <Compile Include="Assets\EasyLoadingScreen\Scripts\RotateBar.cs" />
     <Compile Include="Assets\Scripts\GyroAcceleration.cs" />
+    <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\GravityControl.cs" />
     <Compile Include="Assets\Scripts\Archive\GravityAttractor.cs" />
+    <Compile Include="Assets\Scripts\CreateAndJoinRooms.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\IgnoreUiRaycastWhenInactive.cs" />
     <Compile Include="Assets\Scripts\DeviceRotation.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
-    <Compile Include="Assets\Scripts\Tilt.cs" />
+    <Compile Include="Assets\Scripts\SpawnPlayers.cs" />
+    <Compile Include="Assets\Scripts\Archive\Tilt.cs" />
     <Compile Include="Assets\Scripts\Archive\GravityBody.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\FriendItem.cs" />
     <Compile Include="Assets\Scripts\Consume.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatGui.cs" />
+    <Compile Include="Assets\Scripts\ConnectToServer.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextToggleIsOnTransition.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
-    <Compile Include="Assets\Scripts\Jump.cs" />
-    <Compile Include="Assets\EasyLoadingScreen\Scripts\RotateBar.cs" />
-    <Compile Include="Assets\EasyLoadingScreen\Scripts\LoadingScreenBarSystem.cs" />
-    <Compile Include="Assets\Scripts\ConnectToServer.cs" />
-    <Compile Include="Assets\Scripts\MainMenu.cs" />
-    <Compile Include="Assets\Scripts\CreateAndJoinRooms.cs" />
-    <Compile Include="Assets\Scripts\SpawnPlayers.cs" />
+    <Compile Include="Assets\Scripts\Archive\Jump.cs" />
+    <Compile Include="Assets\Particle Attractor by Moonflower Carnivore\Scripts\particleAttractorMove.cs" />
+    <Compile Include="Assets\Particle Attractor by Moonflower Carnivore\Scripts\particleAttractorLinear.cs" />
+    <Compile Include="Assets\Particle Attractor by Moonflower Carnivore\Scripts\particleAttractorSelf.cs" />
+    <Compile Include="Assets\Particle Attractor by Moonflower Carnivore\Scripts\rotation.cs" />
+    <Compile Include="Assets\Particle Attractor by Moonflower Carnivore\Scripts\particleAttractorSpherical.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -107,8 +105,10 @@
     <None Include="Assets\ClassicSpace\Classic Space Skybox Readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Photon\PhotonLibs\WebSocket\websocket-sharp.dll" />
+    <None Include="Assets\Particle Attractor by Moonflower Carnivore\Shaders\Particles Additive Intensify.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\EasyLoadingScreen\Setup.txt" />
+    <None Include="Assets\Particle Attractor by Moonflower Carnivore\Particle Attractor documentation.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
@@ -763,6 +763,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="PhotonChat.csproj">
+      <Project>{893686CC-1822-9529-01EC-BC44A8373A72}</Project>
+      <Name>PhotonChat</Name>
+    </ProjectReference>
+    <ProjectReference Include="PhotonUnityNetworking.Editor.csproj">
+      <Project>{91908193-319A-93C1-27CF-6F6BB1951FDA}</Project>
+      <Name>PhotonUnityNetworking.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj">
       <Project>{62051D62-3A71-B8DC-54EF-8BE163CC10C2}</Project>
       <Name>PhotonUnityNetworking.Utilities.PhotonPlayer.Editor</Name>
@@ -771,37 +779,29 @@
       <Project>{616A5E83-E862-2BE6-4D1F-76192F1D5631}</Project>
       <Name>PunDemos.DemoHubEditor</Name>
     </ProjectReference>
-    <ProjectReference Include="PunDemos.DemoSlotcarEditor.csproj">
-      <Project>{E7F3ADDF-7B90-CBE2-61A9-09BA5DC77395}</Project>
-      <Name>PunDemos.DemoSlotcarEditor</Name>
-    </ProjectReference>
-    <ProjectReference Include="PhotonUnityNetworking.Demos.csproj">
-      <Project>{C326B131-734F-0D06-8773-6444D83D7AEE}</Project>
-      <Name>PhotonUnityNetworking.Demos</Name>
+    <ProjectReference Include="PhotonRealtime.csproj">
+      <Project>{61BC0DB9-136E-3B7D-9575-7B4420CB5825}</Project>
+      <Name>PhotonRealtime</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.csproj">
       <Project>{A771BAD3-89AA-C913-F871-45A93E5D5400}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
     </ProjectReference>
-    <ProjectReference Include="PhotonRealtime.csproj">
-      <Project>{61BC0DB9-136E-3B7D-9575-7B4420CB5825}</Project>
-      <Name>PhotonRealtime</Name>
-    </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.csproj">
       <Project>{2E14E520-1982-BD2D-B9C8-A087090A905E}</Project>
       <Name>PhotonUnityNetworking</Name>
     </ProjectReference>
-    <ProjectReference Include="PhotonChat.csproj">
-      <Project>{893686CC-1822-9529-01EC-BC44A8373A72}</Project>
-      <Name>PhotonChat</Name>
+    <ProjectReference Include="PhotonUnityNetworking.Demos.csproj">
+      <Project>{C326B131-734F-0D06-8773-6444D83D7AEE}</Project>
+      <Name>PhotonUnityNetworking.Demos</Name>
+    </ProjectReference>
+    <ProjectReference Include="PunDemos.DemoSlotcarEditor.csproj">
+      <Project>{E7F3ADDF-7B90-CBE2-61A9-09BA5DC77395}</Project>
+      <Name>PunDemos.DemoSlotcarEditor</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.Culling.Editor.csproj">
       <Project>{F6B9CF3B-0933-B257-E61F-40665FA89DA7}</Project>
       <Name>PhotonUnityNetworking.Utilities.Culling.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="PhotonUnityNetworking.Editor.csproj">
-      <Project>{91908193-319A-93C1-27CF-6F6BB1951FDA}</Project>
-      <Name>PhotonUnityNetworking.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

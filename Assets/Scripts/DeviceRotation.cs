@@ -1,3 +1,13 @@
+/// DeviceRotation.cs
+/// An abstract class to initiate a Gyroscope and ready it for Unity Quaternions
+/// 0.0167f = 60Hz
+/// 
+/// Author: Peter Wolfgang Linder
+/// Date: April 3rd, 2022
+/// 
+/// @see: ...Can't remember...
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
