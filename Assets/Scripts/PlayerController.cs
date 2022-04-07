@@ -17,10 +17,12 @@ public class PlayerController : MonoBehaviourPun
 
     // System vars
     bool grounded;
-    Vector3 moveAmount;
-    Vector3 smoothMoveVelocity;
-    float verticalLookRotation;
+    public Vector3 moveAmount;
+    public Vector3 smoothMoveVelocity;
+
+    //float verticalLookRotation;
     Rigidbody rigidbody;
+    //public GyroAcceleration myGyroAcceleration;
 
     [SerializeField] private Camera playerCamera;
     [SerializeField] private AudioListener playerListener;
@@ -49,14 +51,16 @@ public class PlayerController : MonoBehaviourPun
             return;
         }
 
-        // Calculate movement:
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputY = Input.GetAxisRaw("Vertical");
 
         Vector3 moveDir = new Vector3(inputX, 0, inputY).normalized;
+        //moveDir = transform.TransformDirection(moveDir);            // Convert to World space         
         Vector3 targetMoveAmount = moveDir * walkSpeed;
         moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, .15f);
 
+
+        // Back button / Escape to return to menu
         if (Input.GetKey(KeyCode.Escape))
         {
             PhotonNetwork.Disconnect();
@@ -92,11 +96,11 @@ public class PlayerController : MonoBehaviourPun
         {
             return;
         }
-        // Player will only move if the view is for that player character - the one you spawned into the game
-        {
-            // Apply movement to rigidbody
-            Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
-            rigidbody.MovePosition(rigidbody.position + localMove);
-        }
+        // If no Gyroscope, use keyboard controls
+        //if (!Input.gyro.enabled)
+
+        // Apply movement to rigidbody
+        Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
+        rigidbody.MovePosition(rigidbody.position + localMove);
     }
 }

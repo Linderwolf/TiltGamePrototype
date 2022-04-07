@@ -58,7 +58,7 @@ public class SpawnFood : MonoBehaviour
         switch (Random.Range(1, 6))
         {   // Just hardcoding these planet locations for performance sake
             case 1: // Beach Planet
-                planetDiameter = 14;
+                planetDiameter = 15;
                 planetLocation = new Vector3(2.3f, -23.88f, -16.85f);
                 return planetLocation;
             case 2: // Forest Planet
@@ -66,11 +66,11 @@ public class SpawnFood : MonoBehaviour
                 planetLocation = new Vector3(-21.72f, 3.41f, -19.24f);
                 return planetLocation;
             case 3: // Green Ice Planet
-                planetDiameter = 10;
+                planetDiameter = 8;
                 planetLocation = new Vector3(11.16f, -13.79f, 13.72f);
                 return planetLocation;
             case 4: // Ice Planet
-                planetDiameter = 10;
+                planetDiameter = 6;
                 planetLocation = new Vector3(10.39f, 9.29f, 20.58f);
                 return planetLocation;
             case 5: // Orange Planet
@@ -78,7 +78,7 @@ public class SpawnFood : MonoBehaviour
                 planetLocation = new Vector3(0f, 0f, 0f);
                 return planetLocation;
             case 6: // Pine Planet
-                planetDiameter = 12;
+                planetDiameter = 13;
                 planetLocation = new Vector3(-9.7f, 13.32f, 22.02f);
                 return planetLocation;
         }

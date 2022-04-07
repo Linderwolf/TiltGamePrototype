@@ -555,7 +555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravityOrbit: {fileID: 0}
-  RotationSpeed: 5
+  rotationSpeed: 2
 --- !u!114 &8497163447392657749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,8 +568,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0eef9f2a8371042a6a3e1bc211c3fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  maxSpeed: 100
+  speed: 5
+  rotationSpeed: 2
+  maxSpeed: 20
+  rb: {fileID: 8497163447392657742}
   rollDegrees: 0
   pitchDegrees: 0
 --- !u!114 &8497163447392657751
@@ -611,11 +613,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823ae3b35c9921b449b9128d0844bef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 7
+  walkSpeed: 11
   jumpForce: 750
   groundedMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  moveAmount: {x: 0, y: 0, z: 0}
+  smoothMoveVelocity: {x: 0, y: 0, z: 0}
   playerCamera: {fileID: 3812575768659615759}
   playerListener: {fileID: 0}
 --- !u!114 &2724330507329067728
